@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Input from "@/components/Input/Input";
+import Input from "@/components/Input";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
