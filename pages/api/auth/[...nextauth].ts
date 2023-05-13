@@ -3,7 +3,7 @@ import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import Credentials from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { compare } from 'bcrypt'; 
+import { compareSync } from 'bcryptjs'; 
 import prismadb from '@/libs/prismadb';
 
 export const authOptions: AuthOptions = {
@@ -42,7 +42,7 @@ export const authOptions: AuthOptions = {
           throw new Error('Email does not exist');
         }
 
-        const isCorrectPassword = await compare(credentials.password, user.hashedPassword);
+        const isCorrectPassword = compareSync(credentials.password, user.hashedPassword);
 
         if (!isCorrectPassword) {
           throw new Error('Incorrect password');
